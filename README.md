@@ -1,7 +1,7 @@
 psrx
 ====
 
-Alternative proposal for PSR-X autoloader spec
+Alternative proposal for PSR-X autoloader spec (under construction)
 
 
 
