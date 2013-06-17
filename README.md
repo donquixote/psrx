@@ -20,7 +20,11 @@ this one attempts to
 Open to discuss:
 - We can try to make it less "mathy". But I would like to keep it equivalent.
 - Whether a file can do other things than define the class expected by the class loader. This might be ok "at your own risk".
-
+- The term "mapping" is a bit odd to describe only one pair of ($D, $N).
+- Maybe we should have a term for a collection of ($D, $N) pairs? These could have an additional restriction to avoid intersections.
+- In "Instructions for library developers", paths are relative to the library root.
+  In other sections, these paths are absolute, or relative to the application root.
+  The transition from one to the other needs to be clarified.
 
 
 ## The Spec
