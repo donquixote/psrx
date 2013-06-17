@@ -70,6 +70,8 @@ such that IF all the path-namespace mappings are valid PSR-X mappings, THEN when
 
   THEN
     - Exactly ONE of the files $F[i] must be included.
+      (Which candidate wins, is not subject of this spec)
+    - (We assume that inclusion of this file will make $C available as a class or interface)
 - On the other hand, if there is no such candidate, then no file must be included, and other class loaders on the spl autoload stack must get a chance to follow up.
 - Either way, the class loader must not crash, or raise any errors or exceptions.
 
