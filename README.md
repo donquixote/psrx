@@ -83,7 +83,7 @@ Instructions:
 - Choose a class loader that claims to support PSR-X.
 - Understand the path-namespace mappings provided by the libraries, and the configuration interface provided by the class loader, and configure the class loader with the path-namespace mappings from the libraries.
 
-Profit:
+Profit (if the libraries and the class loader keep their promises):
 - The class loader will load all the classes provided by those libraries in PSR-X directories.
 - The class loader will not crash.
 
