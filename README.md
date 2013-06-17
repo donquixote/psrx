@@ -25,12 +25,29 @@ Open to discuss:
 
 ## The Spec
 
+### Terminology
+
+"PHP library" can refer to any collection of PHP files that is shipped at-once, meant to be included from other PHP code.  
+
+"Application" means a collection of PHP files, of which some are meant to be executed directly, and others are meant to be included from there.
+An application may contain a number of 3rd party libraries, and some code of its own.
+
+We may also regard the application a "library" of its own, if it contains PHP files to be included from other PHP code.
+
+We assume that libraries contain classes that, in an application context, should be autoloaded using PHP's spl autoload mechanism.
+
+We also assume that the application developer wants to use one shared autoloader for all or most of the libraries.
+
+"Autoloader" can refer to a system that can provide autoload callbacks for the spl autoload stack, or it can refer to such a callback directly.
+An autoloader can be made up of PHP files, which by themselves will be autoloaded. How exactly this happens, is not subject for this document.
+
+
 ### Goal
 
 The spec deals with three questions:
 - How to write a PHP library, so that it can be made to work with any PSR-X compliant class loader.
 - How to write a class loader, so that it can be made to work with any PSR-X compliant PHP library.
-- How can a PSR-X compliant library be made to work with a PSR-X compliant class loader.
+- How to write an application to use a shared PSR-X autoloader for a number of PSR-X libraries.
 
 
 ### Definition: PSR-X match
