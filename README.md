@@ -3,6 +3,24 @@ psrx
 
 Alternative proposal for PSR-X autoloader spec (under construction)
 
+Details can be discussed.
+
+Compared to the [existing proposal](https://github.com/php-fig/fig-standards/blob/3740bbe873c8e31d0d218b5d1cd8fbb3cb82806a/proposed/autoloader.md),
+this one attempts to
+- set an explicit interoperability goal
+- identify the audience and relevant parties for this interoperability goal
+- provide an explicit distribution of responsibilities for those parties
+- provide a guaranteed profit, if all parties do their job correctly
+- provide loophole-free exact definitions
+- be permissive, without being ambiguous or self-contradicting
+- be explicit about its scope limitation
+- provide definitions that can be translated into (unit) tests, if we choose to do so.
+
+
+Open to discuss:
+- We can try to make it less "mathy". But I would like to keep it equivalent.
+- Whether a file can do other things than define the class expected by the class loader. This might be ok "at your own risk".
+
 
 
 ## The Spec
