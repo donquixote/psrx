@@ -37,10 +37,12 @@ Let $D be a filesystem directory, $N be a PHP namespace.
 For every file $F,  
 if there is a fully-qualified class name $C,  
 such that ($D, $N, $F, $C) is a PSR-X match,  
-then the inclusion of $F from a PHP script, at a time when the class $C is not already defined,
+then the inclusion of $F from a PHP script
 - must make $C available as a class or interface.
 - (must not have any other side effects (under discussion))
-- must NOT cause the script to crash, exit, or raise any errors or exceptions.
+- must NOT cause the script to crash, exit, or raise any errors or exceptions, UNLESS
+  - A class or interface named $C was already defined at the time the file is included.
+  - A base class or interface is not available.
 
 
 ### Instructions for library developers
