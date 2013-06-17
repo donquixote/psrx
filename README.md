@@ -34,7 +34,10 @@ Then ($D, $N, $F, $C) is a PSR-X match, IF there are two strings $path_suffix an
 
 Let $D be a filesystem directory, $N be a PHP namespace.  
 ($D, $N) is a PSR-X path-namespace mapping, IF  
-For every PSR-X match ($D, $N, $F, $C), the inclusion of $F from a PHP script
+For every file $F,  
+if there is a fully-qualified class name $C,  
+such that ($D, $N, $F, $C) is a PSR-X match,  
+then the inclusion of $F from a PHP script, at a time when the class $C is not already defined,
 - must make $C available as a class or interface.
 - (must not have any other side effects (under discussion))
 - must NOT cause the script to crash, exit, or raise any errors or exceptions.
