@@ -59,6 +59,11 @@ The path-namespace mappings may be specified in any format, such as:
 - A machine-readable format that is specific to a framework or other system the library is designed for. (e.g. composer.json)
 - If the library is an extension for an existing framework, CMS or other system, then an _implicit_ mapping based on the extension name can be sufficient.
 
+Recommended practice (optional):
+- Every class should be at least in a two-level namespace, where the root namespace specifies the vendor, and the second-level namespace fragment specifies the package.
+- An ideal simple one-package library has just one path-namespace mapping ($D, $N), where the directory $D is "src", and the namespace $N is the vendor plus package name.
+- More generally, it is recommended that path-namespace mappings are specified for second-level namespaces.
+
 
 ### Instructions for autoloader developers
 
