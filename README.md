@@ -63,7 +63,8 @@ Let
 - $C be a valid fully-qualified PHP class name.
 
 Then ($D, $N, $F, $C) is a PSR-X match, IF there are two strings $path_suffix and $class_suffix, such that:
-- $class_suffix is the string that results from replacing every directory separator in $dir_suffix with an underscore.
+- $class_suffix is the string that results from replacing every directory separator in $dir_suffix with a namespace separator.
+- $dir_suffix is the string that results from replacing every namespace separator in $class_suffix with a directory separator.
 - $F = $D + '/' + $path_suffix + '.php'.
 - $F is an existing file.
 - $C = $N + '\' + $class_suffix.
