@@ -4,7 +4,7 @@ Especially, it does no longer talk about libraries or applications, it only talk
 
 The goal is to be equivalent with the intended meaning of Paul's proposal, or whatever the group agrees on, but be more precise in the wording.
 
-Any part of it conflicts with the intended meaning the group has in mind, then it can be changed.
+If any part of it conflicts with the intended meaning the group has in mind, then it can be changed.
 
 
 ## Summary
