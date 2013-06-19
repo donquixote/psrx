@@ -65,7 +65,7 @@ Note: If the script crashes during inclusion of the file, this is not the respon
 Note: The file is supposed to define the class that is expected. Whether it does so or not, is not the responsibility of the autoloader. The autoloader will move on *as if* the class was successfully defined.
 
 
-## Appendix: Instructions developers that use a PSR-X autoloader.
+## Appendix: Instructions for projects that use a PSR-X autoloader.
 
 The spec explains how the class loader has to be *implemented*, but not how it has to be *used* so it works reliably.
 
