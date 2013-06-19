@@ -13,6 +13,16 @@ The goal is to be equivalent with the intended meaning of Paul's proposal, or wh
 If any part of it conflicts with the intended meaning the group has in mind, then it can be changed.
 
 
+### Disclaimer
+
+This document is not intended to be used as-is as a standard. Especially,
+- A lot of things that are mentioned inline, should rather move to a FAQ, or not be mentioned at all.  
+  They are mentioned inline to allow for an easier discussion, and because it is easier to remove redundant things than to explain missing things.  
+  Some of these points address issues that were previously discussed on the mailinglist, and are therefore
+- The language might not be very spec-like.
+  However, it attempts to be somewhat equivalent to what the spec should say.
+
+
 ## Summary
 
 A PSR-X autoloader is a callback registered on the spl autoload stack, that operates with an ordered list (hardcoded or configurable) of path-namespace mappings.
