@@ -42,7 +42,7 @@ such that
 
 ### Definition: PSR-X path-namespace Mapping
 
-A path-namespace mapping is qualifies as "PSR-X", if
+A path-namespace mapping qualifies as "PSR-X", IF  
 For every fully-qualified class name, if there is a file in the directory tree that "matches" the class with respect to the mapping,
 then the inclusion of this file from a PHP script MUST make a class or interface available with the given fully-qualified class name.
 
