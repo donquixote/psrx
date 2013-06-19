@@ -9,7 +9,7 @@ If any part of it conflicts with the intended meaning the group has in mind, the
 
 ## Summary
 
-A PSR-X autoloader is a callback registered on the spl autoload stack, that operates with an ordered list (hardcoded or configurable) path-namespace mappings.
+A PSR-X autoloader is a callback registered on the spl autoload stack, that operates with an ordered list (hardcoded or configurable) of path-namespace mappings.
 Each mapping consists of a filesystem directory and a PHP namespace.
 
 If those mappings, and the files within the mapped directories, follow certain criteria, then the autoloader must be able to load the classes defined in these directories.
