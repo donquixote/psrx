@@ -15,8 +15,10 @@ If any part of it conflicts with the intended meaning the group has in mind, the
 
 ### Disclaimer
 
-This document is not intended to be used as-is as a standard. Especially,
-- A lot of things that are mentioned inline, should rather move to a FAQ, or not be mentioned at all.  
+This document is *not at all* intended to be used as-is as a standard. Especially,
+- There might be redundant statements that can be merged or removed.  
+  The goal was to be sufficient to remove all ambiguities, but not (yet) to do that in a minimal way.
+- A lot of things that are mentioned inline, should rather be move to a FAQ, or not be mentioned at all.  
   They are mentioned inline to allow for an easier discussion, and because it is easier to remove redundant things than to explain missing things.  
   Some of these points address issues that were previously discussed on the mailinglist, and are therefore mentioned explicitly.
 - The language might not be very spec-like.
@@ -58,24 +60,34 @@ such that
 
 ### Definition: PSR-X autoloader
 
-A PSR-X autoloader is a callback registered on the spl autoload stack, that operates with a (hardcoded or configurable) *ordered list* of path-namespace mappings.
+A PSR-X autoloader is a callback registered on the spl autoload stack, that operates with an ordered list of path-namespace mappings.
 
 Whenever the autoloader is triggered with a fully qualified class name, it has to:
 - If one or more files exist that "match" the fully qualified class name with respect to one of the mappings, then it must include or require *exactly one* of those files.
 - If more than one of the mappings has a matching file, then it must choose a/the file from the mapping that is first in the list.
 - If no match is found, then it must do nothing.
 - Either way, it may not crash, raise errors of any level, or throw any exceptions *by itself*.
+- It must not return a value.
 
-Note: If the autoloader is triggered with an invalid class name, then it is the implementor's choice what to do. The autoloader may simply crash, the spec does not care.
+Whenever the autoloader is triggered with a string that is *not* a valid class name, it has to:
+- Not include any file.
+- It may not crash, raise errors of any level, or throw any exceptions *by itself*.
+- It must not return a value.
 
-Note: (*) It can be shown that for one mapping and one fully qualified class name, no more than one file can be a "match".
+#### Notes (to be moved to the FAQ)
 
-Note: If the script crashes during inclusion of the file, this is not the responsibility of the autoloader.
+If the autoloader is triggered with an invalid class name, then it is the implementor's choice what to do. The autoloader may simply crash, the spec does not care.
 
-Note: The file is supposed to define the class that is expected. Whether it does so or not, is not the responsibility of the autoloader. The autoloader will move on *as if* the class was successfully defined.
+It can be shown that for one mapping and one fully qualified class name, no more than one file can be a "match".
+
+If the script crashes during inclusion of the file, this is not the responsibility of the autoloader.
+
+The file is supposed to define the class that is expected. Whether it does so or not, is not the responsibility of the autoloader. The autoloader will move on *as if* the class was successfully defined.
+
+The ordered list of path-namespace mappings could be hardcoded or configurable, this is an implementation choice.
 
 
-## Appendix: Instructions for projects that use a PSR-X autoloader.
+## Appendix (FAQ): Instructions for projects that use a PSR-X autoloader.
 
 The spec explains how the class loader has to be *implemented*, but not how it has to be *used* so it works reliably.
 
