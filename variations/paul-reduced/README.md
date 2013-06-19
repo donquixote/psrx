@@ -18,7 +18,7 @@ If any part of it conflicts with the intended meaning the group has in mind, the
 This document is not intended to be used as-is as a standard. Especially,
 - A lot of things that are mentioned inline, should rather move to a FAQ, or not be mentioned at all.  
   They are mentioned inline to allow for an easier discussion, and because it is easier to remove redundant things than to explain missing things.  
-  Some of these points address issues that were previously discussed on the mailinglist, and are therefore
+  Some of these points address issues that were previously discussed on the mailinglist, and are therefore mentioned explicitly.
 - The language might not be very spec-like.
   However, it attempts to be somewhat equivalent to what the spec should say.
 
