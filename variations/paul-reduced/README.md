@@ -48,7 +48,7 @@ such that
 
 ### Definition: PSR-X autoloader
 
-A PSR-X autoloader is a callback registered on the spl autoload stack, that operates on a (hardcoded or configurable) *ordered list* of path-namespace mappings.
+A PSR-X autoloader is a callback registered on the spl autoload stack, that operates with a (hardcoded or configurable) *ordered list* of path-namespace mappings.
 
 Whenever the autoloader is triggered with a fully qualified class name, it has to:
 - If one or more files exist that "match" the fully qualified class name with respect to one of the mappings, then it must include or require *exactly one* of those files.
