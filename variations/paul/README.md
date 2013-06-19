@@ -15,7 +15,9 @@ Each mapping consists of a filesystem directory and a PHP namespace.
 If those mappings, and the files within the mapped directories, follow certain criteria, then the autoloader must be able to load the classes defined in these directories.
 
 
-## Definition: Path-namespace mapping
+## Definitions
+
+### Definition: Path-namespace mapping
 
 A path-namespace mapping is an existing filesystem directory together with a valid PHP namespace.
 
@@ -24,7 +26,7 @@ A path-namespace mapping is an existing filesystem directory together with a val
 We refer to "directory tree" as the collection of the directory itself, and all subfolders at any depth.
 
 
-## Definition: PSR-X Match
+### Definition: PSR-X Match
 
 For a filesystem directory and a PHP namespace (that we call the "path-namespace mapping"), a file within the directory tree, and a fully-qualified class name, we say:
 
@@ -38,7 +40,7 @@ such that
 - The relative file path can be built from the relative class name, by replacing every namespace separator with a directory separator, and appending ".php".
 
 
-## Definition: PSR-X path-namespace Mapping
+### Definition: PSR-X path-namespace Mapping
 
 A path-namespace mapping is qualifies as "PSR-X", if
 For every fully-qualified class name, if there is a file in the directory tree that "matches" the class with respect to the mapping,
@@ -47,7 +49,7 @@ then the inclusion of this file from a PHP script MUST make a class or interface
 (Todo: More criteria can be discussed)
 
 
-## Definition: PSR-X mapping conflict
+### Definition: PSR-X mapping conflict
 
 For two PSR-X path-namespace mappings, we say these mappings are in conflict, if there is a file, such that
 - The file is in the directory tree of each mapping.
@@ -63,7 +65,7 @@ For two PSR-X path-namespace mappings, we say these mappings are in a *potential
 Note: The second part is necessary to extend the definition to empty directories.
 
 
-## Definition: PSR-X autoloader
+### Definition: PSR-X autoloader
 
 A PSR-X autoloader is a callback registered on the spl autoload stack, that operates on a (hardcoded or configurable) *ordered list* of path-namespace mappings, where
 - each of the mappings is a PSR-X mapping.
@@ -75,7 +77,7 @@ Whenever the autoloader is triggered with a fully qualified class name, it has t
 - If no match is found, then it must do nothing.
 - Either way, it may not crash, raise errors of any level, or throw any exceptions.
 
-Note: If the autoloader is triggered with an invalid class name, then it is the implementor's choice what to do.
+Note: If the autoloader is triggered with an invalid class name, then it is the implementor's choice what to do. The autoloader may simply crash, the spec does not care.
 
 Note: If the path-namespace mappings are configurable, then it is the implementor's choice whether to check if the registered mappings are valid PSR-X mappings.
 
