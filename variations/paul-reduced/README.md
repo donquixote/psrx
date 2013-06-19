@@ -65,7 +65,7 @@ Note: If the script crashes during inclusion of the file, this is not the respon
 Note: The file is supposed to define the class that is expected. Whether it does so or not, is not the responsibility of the autoloader. The autoloader will move on *as if* the class was successfully defined.
 
 
-## Appendix: Instructions for library and application developers.
+## Appendix: Instructions developers that use a PSR-X autoloader.
 
 The spec explains how the class loader has to be *implemented*, but not how it has to be *used* so it works reliably.
 
@@ -101,8 +101,12 @@ Note: The second part is necessary to extend the definition to empty directories
 
 It was said in the spec that the autoloader "operates with" an ordered list of path-namespace mappings, which may be hardcoded or configurable.
 
-The PSR-X class loader will work reliably, if
+If
 - each of the mappings is a PSR-X mapping.
 - no two of the mappings are in a potential conflict.
+
+then the autoloader will work correctly, that is, it will successfully load the classes and interfaces under the registered directories, and it will not crash.
+
+Note: If the above is not the case, then the autoloader may still work successfully, but we do not guarantee for it.
 
 Note: If the path-namespace mappings are configurable, then it is the implementor's choice whether to check if the registered mappings are valid PSR-X mappings, or if this should be taken for granted.
