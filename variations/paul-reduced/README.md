@@ -2,11 +2,17 @@ This variation is even closer to the original proposal.
 
 It specifies the behavior of a class loader, without mentioning the state of the filesystem.
 
-Compared to the original proposal by Paul, it attempts to
-- avoid loopholes and be crystal clear.
-- avoid any statements that are not within the responsibility of the autoloader.
+Compared to the original proposal by Paul:
+- it does handle the multiplicity or possible non-existence of matching files and namespace prefixes for a given FQCN.
+- it does describe the "mapping" as something that persists beyond one class lookup.
+- it does not mix statements about the autoloader behavior with statements about the loaded files and mapped directories.
+  The autoloader can assume or expect what might be in a file, but it cannot control and will not enforce it.
+- it may work as an instruction to write unit tests.
 
-Especially, it does no longer talk about libraries or applications, it only talks about the autoloader. But it does so in a way that instructions for libraries can be easily derived.
+It avoids statements that are out of scope. E.g.
+- It does not talk about libraries vs applications, it only talks about autoloaders and how they behave.
+- It does not mention whether the autoloader can be configurable and how this should be done.
+  It just says the loader "operates with" an "ordered list" of path-namespace mappings.
 
 The goal is to be equivalent with the intended meaning of Paul's proposal, or whatever the group agrees on, but be more precise in the wording.
 
@@ -23,6 +29,8 @@ This document is *not at all* intended to be used as-is as a standard. Especiall
   Some of these points address issues that were previously discussed on the mailinglist, and are therefore mentioned explicitly.
 - The language might not be very spec-like.
   However, it attempts to be somewhat equivalent to what the spec should say.
+- The Appendix can be completely restructured if needed.
+- Terms can be renamed or sliced up and done differently.
 
 
 ## Summary
@@ -36,6 +44,8 @@ Whenever the autoload callback is triggered, it has to look for matching files w
 ## Definitions
 
 ### Definition: Path-namespace mapping
+
+(TODO: This may be a redundant/unnecessary/boring definition?)
 
 A path-namespace mapping is an existing filesystem directory together with a valid PHP namespace.
 
@@ -62,29 +72,25 @@ such that
 
 A PSR-X autoloader is a callback registered on the spl autoload stack, that operates with an ordered list of path-namespace mappings.
 
-Whenever the autoloader is triggered with a fully qualified class name, it has to:
-- If one or more files exist that "match" the fully qualified class name with respect to one of the mappings, then it must include or require *exactly one* of those files.
-- If more than one of the mappings has a matching file, then it must choose a/the file from the mapping that is first in the list.
-- If no match is found, then it must do nothing.
-- Either way, it may not crash, raise errors of any level, or throw any exceptions *by itself*.
-- It must not return a value.
-
-Whenever the autoloader is triggered with a string that is *not* a valid class name, it has to:
-- Not include any file.
-- It may not crash, raise errors of any level, or throw any exceptions *by itself*.
+Whenever the autoloader is triggered, it must:
+- If the argument is a valid fully-qualified class name, and one or more files exist that "match" the fully qualified class name with respect to one of the mappings, then it must include or require *exactly one* of those files.
+- If more than one of the mappings has a matching file, then it must choose the file from the mapping that is first in the list.
+- If no match is found, or the argument is not a valid fully-qualified class name, then it must do nothing.
+- Either way, it may not crash, raise errors of any level, or throw any exceptions.
 - It must not return a value.
 
 #### Notes (to be moved to the FAQ)
 
-If the autoloader is triggered with an invalid class name, then it is the implementor's choice what to do. The autoloader may simply crash, the spec does not care.
+The ordered list of path-namespace mappings could be hardcoded or configurable, this is an implementation choice.
 
 It can be shown that for one mapping and one fully qualified class name, no more than one file can be a "match".
+This is why we can say "it must choose _the_ file from the mapping that is first" and not "it must choose _a_ file from ..".
 
 If the script crashes during inclusion of the file, this is not the responsibility of the autoloader.
 
-The file is supposed to define the class that is expected. Whether it does so or not, is not the responsibility of the autoloader. The autoloader will move on *as if* the class was successfully defined.
-
-The ordered list of path-namespace mappings could be hardcoded or configurable, this is an implementation choice.
+The autoloader is designed with the assumption that a matching file does always define the expected class.
+Whether it does so or not, is not the responsibility of the autoloader.
+The autoloader will move on as if the class was successfully defined.
 
 
 ## Appendix (FAQ): Instructions for projects that use a PSR-X autoloader.
